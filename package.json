@@ -1,0 +1,30 @@
+{
+  "name": "MyFinanceApp",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "tsc": "tsc",
+    "clean": "rimraf artifacts",
+    "watch": "npm run build -- -w",
+    "build": "npm run clean && npm run tsc --",
+    "start:android": "npm run build && concurrently -r 'npm run watch' 'react-native run-android'"
+  },
+  "dependencies": {
+    "react": "16.0.0-alpha.12",
+    "react-native": "0.46.1"
+  },
+  "devDependencies": {
+    "@types/jest": "^20.0.2",
+    "@types/react": "^15.0.38",
+    "@types/react-native": "^0.46.0",
+    "babel-jest": "20.0.3",
+    "babel-preset-react-native": "2.1.0",
+    "concurrently": "^3.5.0",
+    "jest": "20.0.4",
+    "react-test-renderer": "16.0.0-alpha.12",
+    "rimraf": "^2.6.1"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
