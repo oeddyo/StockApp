@@ -1,17 +1,24 @@
 import React, { Component } from "react"
 import { View, Text, StyleSheet } from "react-native"
 
+interface Props {
+  marketCap: string
+}
+interface State {
+}
 
-class Cell extends Component {
+class Cell extends Component<Props, State> {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <View style={styles.cell}>
         <Text style={styles.text}>
-          13.8
+          {this.props.marketCap}
         </Text>
       </View>
     )
-
   }
 }
 

@@ -2,17 +2,25 @@ import React, { Component } from "react"
 import { View, Text, StyleSheet } from "react-native"
 import Cell from "./cell"
 
+interface Props {
+  ticker: string,
+  price: number,
+  marketCap: string
+}
+interface State { }
 
-class Stock extends Component {
+class Stock extends Component<Props, State> {
+  constructor(props) {
+    super(props)
+  }
   render() {
     return (
       <View style={styles.row}>
-        <Text style={styles.leftText}>NIKE</Text>
-        <Text style={styles.rightText}>34.559</Text>
-        <Cell></Cell>
+        <Text style={styles.leftText}>{this.props.ticker}</Text>
+        <Text style={styles.rightText}>{this.props.price}</Text>
+        <Cell marketCap={this.props.marketCap}></Cell>
       </View>
     )
-
   }
 }
 
@@ -32,5 +40,7 @@ const styles = StyleSheet.create({
     borderBottomWidth: 0.3
   }
 })
+
+
 
 export default Stock

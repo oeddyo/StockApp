@@ -1,9 +1,12 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 class Cell extends Component {
+    constructor(props) {
+        super(props);
+    }
     render() {
         return (React.createElement(View, { style: styles.cell },
-            React.createElement(Text, { style: styles.text }, "13.8")));
+            React.createElement(Text, { style: styles.text }, this.props.marketCap)));
     }
 }
 const styles = StyleSheet.create({
