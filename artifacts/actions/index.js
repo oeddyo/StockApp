@@ -1,5 +1,5 @@
 export const SELECT_STOCK = "SELECT_STOCK";
-export function selectStock(ticker) {
-    return { type: SELECT_STOCK, ticker };
+export function selectStock(id) {
+    return { type: SELECT_STOCK, payload: id };
 }
 //# sourceMappingURL=index.js.map

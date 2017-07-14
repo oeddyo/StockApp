@@ -1,11 +1,14 @@
 import React, { Component } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import { View, Text, StyleSheet, TouchableHighlight } from "react-native"
 import Cell from "./cell"
 
 interface Props {
   ticker: string,
   price: number,
-  marketCap: string
+  marketCap: string,
+  selected: boolean,
+  idx: string,
+  onTouch: (string) => void
 }
 interface State { }
 
@@ -14,12 +17,16 @@ class Stock extends Component<Props, State> {
     super(props)
   }
   render() {
+    const selectedStyle = (this.props.selected) ? styles.rowSelected : styles.row
+    console.log("this props of a single stock = ", this.props)
     return (
-      <View style={styles.row}>
-        <Text style={styles.leftText}>{this.props.ticker}</Text>
-        <Text style={styles.rightText}>{this.props.price}</Text>
-        <Cell marketCap={this.props.marketCap}></Cell>
-      </View>
+      <TouchableHighlight onPress={() => this.props.onTouch(this.props.idx)}>
+        <View style={selectedStyle}>
+          <Text style={styles.leftText}>{this.props.ticker}</Text>
+          <Text style={styles.rightText}>{this.props.price}</Text>
+          <Cell marketCap={this.props.marketCap}></Cell>
+        </View >
+      </TouchableHighlight >
     )
   }
 }
@@ -38,6 +45,13 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     borderBottomColor: "white",
     borderBottomWidth: 0.3
+  },
+  rowSelected: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    borderBottomColor: "white",
+    borderBottomWidth: 0.3,
+    backgroundColor: "red"
   }
 })
 
