@@ -7,8 +7,8 @@ interface Props {
   price: number,
   marketCap: string,
   selected: boolean,
-  idx: string,
-  onTouch: (string) => void
+  idx: number,
+  onTouch: (number) => void
 }
 interface State { }
 
@@ -18,12 +18,15 @@ class Stock extends Component<Props, State> {
   }
   render() {
     const selectedStyle = (this.props.selected) ? styles.rowSelected : styles.row
-    console.log("this props of a single stock = ", this.props)
     return (
-      <TouchableHighlight onPress={() => this.props.onTouch(this.props.idx)}>
+      <TouchableHighlight onPress={() => this.props.onTouch(this.props.idx)} underlayColor="white">
         <View style={selectedStyle}>
-          <Text style={styles.leftText}>{this.props.ticker}</Text>
-          <Text style={styles.rightText}>{this.props.price}</Text>
+          <View style={styles.leftView}>
+            <Text style={styles.leftText}>{this.props.ticker}</Text>
+          </View>
+          <View style={styles.rightView}>
+            <Text style={styles.rightText}>{this.props.price}</Text>
+          </View>
           <Cell marketCap={this.props.marketCap}></Cell>
         </View >
       </TouchableHighlight >
@@ -31,20 +34,29 @@ class Stock extends Component<Props, State> {
   }
 }
 
+
 const styles = StyleSheet.create({
   leftText: {
     margin: 5,
     fontSize: 26, color: "white"
   },
+  leftView: {
+    justifyContent: "flex-start",
+    width: 100,
+  },
+  rightView: {
+    justifyContent: "flex-start",
+    width: 100,
+  },
   rightText: {
     margin: 5,
-    fontSize: 26, color: "white"
+    fontSize: 26, color: "white",
   },
   row: {
     flexDirection: "row",
     justifyContent: "space-between",
     borderBottomColor: "white",
-    borderBottomWidth: 0.3
+    borderBottomWidth: 0.3,
   },
   rowSelected: {
     flexDirection: "row",

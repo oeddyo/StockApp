@@ -7,11 +7,12 @@ class Stock extends Component {
     }
     render() {
         const selectedStyle = (this.props.selected) ? styles.rowSelected : styles.row;
-        console.log("this props of a single stock = ", this.props);
-        return (React.createElement(TouchableHighlight, { onPress: () => this.props.onTouch(this.props.idx) },
+        return (React.createElement(TouchableHighlight, { onPress: () => this.props.onTouch(this.props.idx), underlayColor: "white" },
             React.createElement(View, { style: selectedStyle },
-                React.createElement(Text, { style: styles.leftText }, this.props.ticker),
-                React.createElement(Text, { style: styles.rightText }, this.props.price),
+                React.createElement(View, { style: styles.leftView },
+                    React.createElement(Text, { style: styles.leftText }, this.props.ticker)),
+                React.createElement(View, { style: styles.rightView },
+                    React.createElement(Text, { style: styles.rightText }, this.props.price)),
                 React.createElement(Cell, { marketCap: this.props.marketCap }))));
     }
 }
@@ -20,15 +21,23 @@ const styles = StyleSheet.create({
         margin: 5,
         fontSize: 26, color: "white"
     },
+    leftView: {
+        justifyContent: "flex-start",
+        width: 100,
+    },
+    rightView: {
+        justifyContent: "flex-start",
+        width: 100,
+    },
     rightText: {
         margin: 5,
-        fontSize: 26, color: "white"
+        fontSize: 26, color: "white",
     },
     row: {
         flexDirection: "row",
         justifyContent: "space-between",
         borderBottomColor: "white",
-        borderBottomWidth: 0.3
+        borderBottomWidth: 0.3,
     },
     rowSelected: {
         flexDirection: "row",

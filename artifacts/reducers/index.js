@@ -1,76 +1,105 @@
 import { combineReducers } from "redux";
-import { SELECT_STOCK } from "../actions";
+import { SELECT_STOCK, DELETE_STOCK } from "../actions";
 const initState = {
-    selectedStockId: "",
     stocks: [
         {
             price: 123.00,
             ticker: "NIKE",
-            marketCap: "99B"
+            marketCap: "99B",
+            selected: false
         },
         {
             price: 18.00,
             ticker: "TWTR",
-            marketCap: "15B"
+            marketCap: "15B",
+            selected: false
         },
         {
             price: 145.00,
-            ticker: "FB",
-            marketCap: "320B"
+            ticker: "JD",
+            marketCap: "320B",
+            selected: false
         },
         {
             price: 18.00,
-            ticker: "TWTR",
-            marketCap: "15B"
+            ticker: "WEIBO",
+            marketCap: "15B",
+            selected: false
         },
         {
             price: 145.00,
-            ticker: "FB",
-            marketCap: "320B"
+            ticker: "GOOG",
+            marketCap: "320B",
+            selected: false
         }, {
             price: 18.00,
-            ticker: "TWTR",
-            marketCap: "15B"
+            ticker: "AMAZ",
+            marketCap: "15B",
+            selected: false
         },
         {
             price: 145.00,
-            ticker: "FB",
-            marketCap: "320B"
+            ticker: "WO",
+            marketCap: "320B",
+            selected: false
         }, {
             price: 18.00,
-            ticker: "TWTR",
-            marketCap: "15B"
+            ticker: "QIHOO",
+            marketCap: "15B",
+            selected: false
         },
         {
             price: 145.00,
-            ticker: "FB",
-            marketCap: "320B"
+            ticker: "SOHU",
+            marketCap: "320B",
+            selected: false
         },
         {
             price: 18.00,
-            ticker: "TWTR",
-            marketCap: "15B"
+            ticker: "HAHA",
+            marketCap: "15B",
+            selected: false
         },
         {
             price: 145.00,
-            ticker: "FB",
-            marketCap: "320B"
+            ticker: "QQ",
+            marketCap: "320B",
+            selected: false
         }, {
             price: 18.00,
-            ticker: "TWTR",
-            marketCap: "15B"
+            ticker: "TENC",
+            marketCap: "15B",
+            selected: false
         },
         {
             price: 145.00,
-            ticker: "FB",
-            marketCap: "320B"
+            ticker: "BABA",
+            marketCap: "320B",
+            selected: false
         }
     ]
 };
 const myFinanceApp = (state = initState, action) => {
     switch (action.type) {
         case SELECT_STOCK: {
-            return Object.assign({}, state, { selectedStockId: action.payload });
+            const after = {
+                stocks: [
+                    ...(state.stocks.slice(0, action.payload).map(x => { return Object.assign({}, x, { selected: false }); })),
+                    Object.assign({}, state.stocks[action.payload], { selected: true }),
+                    ...state.stocks.slice(action.payload + 1).map(x => { return Object.assign({}, x, { selected: false }); })
+                ]
+            };
+            return after;
+        }
+        case DELETE_STOCK: {
+            const after = {
+                stocks: [
+                    ...state.stocks.slice(0, action.payload),
+                    ...state.stocks.slice(action.payload + 1)
+                ]
+            };
+            console.log("so after = ", after);
+            return after;
         }
         default:
             return state;
