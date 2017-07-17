@@ -2,6 +2,7 @@ import React from "react";
 import { Scene, Router } from 'react-native-router-flux';
 import Stocks from "./pages/stocks";
 import StocksEdit from "./pages/stocksEdit";
+import AddStocks from "./pages/addStocks";
 /*
 const RenderHeader = () => {
   return (
@@ -36,7 +37,8 @@ class RouterComponent extends React.Component {
         return React.createElement(Router, null,
             React.createElement(Scene, { key: "root" },
                 React.createElement(Scene, { key: "stocks", component: Stocks, title: "Stocks", hideNavBar: true, initial: true }),
-                React.createElement(Scene, { key: "addStocks", component: StocksEdit, title: "AddStocks", hideNavBar: true })));
+                React.createElement(Scene, { key: "editStocks", component: StocksEdit, title: "EditStocks", hideNavBar: true }),
+                React.createElement(Scene, { key: "addStocks", component: AddStocks, title: "EditStocks", hideNavBar: true })));
     }
 }
 export default RouterComponent;

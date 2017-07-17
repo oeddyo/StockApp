@@ -11,7 +11,9 @@ const renderLeftButton = () => {
             React.createElement(Text, null, "Back"))));
 };
 const renderRightButton = () => {
-    return React.createElement(Text, null, "Add");
+    return React.createElement(TouchableHighlight, { onPress: Actions.addStocks },
+        React.createElement(View, null,
+            React.createElement(Text, null, "Add")));
 };
 const style = {
     header: {
@@ -21,7 +23,6 @@ const style = {
 class StocksEdit extends Component {
     constructor(props) {
         super(props);
-        console.log("here ", JSON.stringify(this.props.stocks));
         const ds = new ListView.DataSource({
             rowHasChanged: (r1, r2) => r1 !== r2
         });

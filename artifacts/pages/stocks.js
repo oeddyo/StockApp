@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { ListView, View, Image, TouchableHighlight, Text } from "react-native";
+import { ListView, View, TouchableHighlight, Text } from "react-native";
 import Stock from "../common/stock";
 import Header from "../common/header";
 import { connect } from "react-redux";
@@ -7,8 +7,8 @@ import { selectStock } from "../actions";
 import Chart from "./chart";
 import { Actions } from 'react-native-router-flux';
 const renderRightButton = () => {
-    return React.createElement(TouchableHighlight, { onPress: Actions.addStocks },
-        React.createElement(Image, { source: { uri: "https://cdn3.iconfinder.com/data/icons/ui-elements-heavy/100/UI_Heavy_map_pin_add-512.png" }, style: { width: 35, height: 35 } }));
+    return React.createElement(TouchableHighlight, { onPress: Actions.editStocks },
+        React.createElement(Text, null, "Edit"));
 };
 const renderLeftButton = () => {
     return React.createElement(Text, null, "Haha");

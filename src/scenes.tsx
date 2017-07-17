@@ -5,6 +5,7 @@ import {
 } from 'react-native-router-flux';
 import Stocks from "./pages/stocks"
 import StocksEdit from "./pages/stocksEdit"
+import AddStocks from "./pages/addStocks"
 
 /*
 const RenderHeader = () => {
@@ -48,9 +49,14 @@ class RouterComponent extends React.Component {
           hideNavBar={true}
           initial={true}
         />
-        <Scene key="addStocks"
+        <Scene key="editStocks"
           component={StocksEdit}
-          title="AddStocks"
+          title="EditStocks"
+          hideNavBar={true}
+        />
+        <Scene key="addStocks"
+          component={AddStocks}
+          title="EditStocks"
           hideNavBar={true}
         />
       </Scene>

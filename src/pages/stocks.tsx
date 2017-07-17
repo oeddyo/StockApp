@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { ListView, ListViewDataSource, View, Image, TouchableHighlight, Text } from "react-native"
+import { ListView, ListViewDataSource, View, TouchableHighlight, Text } from "react-native"
 import Stock from "../common/stock"
 import Header from "../common/header"
 import { connect } from "react-redux"
@@ -23,11 +23,8 @@ interface State {
 }
 
 const renderRightButton = () => {
-  return <TouchableHighlight onPress={Actions.addStocks}>
-    <Image
-      source={{ uri: "https://cdn3.iconfinder.com/data/icons/ui-elements-heavy/100/UI_Heavy_map_pin_add-512.png" }}
-      style={{ width: 35, height: 35 }}
-    />
+  return <TouchableHighlight onPress={Actions.editStocks}>
+    <Text>Edit</Text>
   </TouchableHighlight>
 }
 const renderLeftButton = () => {

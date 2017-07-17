@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import { SELECT_STOCK, DELETE_STOCK } from "../actions";
+import { SELECT_STOCK, DELETE_STOCK, ADD_STOCK } from "../actions";
 const initState = {
     stocks: [
         {
@@ -98,7 +98,19 @@ const myFinanceApp = (state = initState, action) => {
                     ...state.stocks.slice(action.payload + 1)
                 ]
             };
-            console.log("so after = ", after);
+            return after;
+        }
+        case ADD_STOCK: {
+            console.log("calling add stock");
+            const after = {
+                stocks: [...state.stocks, {
+                        ticker: action.payload,
+                        price: 99,
+                        marketCap: "13B",
+                        selected: false
+                    }]
+            };
+            console.log("after => ", after);
             return after;
         }
         default:

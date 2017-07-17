@@ -30,7 +30,11 @@ const renderLeftButton = () => {
   )
 }
 const renderRightButton = () => {
-  return <Text>Add</Text>
+  return <TouchableHighlight onPress={Actions.addStocks}>
+    <View>
+      <Text>Add</Text>
+    </View>
+  </TouchableHighlight>
 }
 const style = {
   header: {
@@ -41,7 +45,6 @@ const style = {
 class StocksEdit extends Component<Props, State>{
   constructor(props) {
     super(props)
-    console.log("here ", JSON.stringify(this.props.stocks))
     const ds = new ListView.DataSource({
       rowHasChanged: (r1, r2) => r1 !== r2
     })
